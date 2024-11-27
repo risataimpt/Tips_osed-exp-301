@@ -56,10 +56,23 @@ python analyze_rop.py rop.txt --recommend-push
 
 Gadgets Recomendados: Gadgets que comienzan con PUSH ESP.
 --------------------------------------------------------------------------------
-0x409e4d: push esp ; add esp, 0x18 ; pop ebx ; ret ; (1 found)
-0x402b7c: push esp ; and al, 0x0C ; xor eax, eax ; add esp, 0x1C ; ret ; (1 found)
-0x40aae2: push esp ; xor al, byte [eax+eax-0x70] ; nop ; jmp  [0x00443250] ; (1 found)
---------------------------------------------------------------------------------
+0x50527874: push esp ; aam 0x55 ; push eax ; ret  ;  (1 found)
+0x50510f1f: push esp ; adc al, 0x02 ; add cl, cl ; retn 0x001C ;  (1 found)
+0x505273e3: push esp ; adc dword [ebx+edi], ecx ; retn 0x1B7D ;  (1 found)
+0x5053143d: push esp ; and al, 0x04 ; mov byte [edx+ecx], 0x00000003 ; inc dword [eax] ; ret  ;  (1 found)
+0x50515664: push esp ; and al, 0x04 ; mov dword [ecx+eax*4], edx ; inc dword [esi+0x0000017C] ; ret  ;  (1 found)
+0x5051e1a6: push esp ; and al, 0x08 ; ret  ;  (1 found)
+0x50540b53: push esp ; and al, 0x10 ; mov dword [edx], eax ; mov eax, 0x00000003 ; ret  ;  (1 found)
+0x50543576: push esp ; and al, 0x10 ; mov dword [edx], eax ; mov eax, 0x00000003 ; ret  ;  (1 found)
+0x505465c0: push esp ; and dl, byte [ebp+0x50] ; push dword [0x5055E078] ; mov dword [0x5055DF7C], eax ; call esi ;  (1 found)
+0x50546434: push esp ; and edx, dword [ebp+0x50] ; push dword [0x5055E078] ; mov dword [0x5055DF24], eax ; call esi ;  (1 found)
+0x5054650c: push esp ; fist word [ebp+0x50] ; push 0x505522E4 ; push dword [0x5055E078] ; call esi ;  (1 found)
+0x50520982: push esp ; mov dword [eax+0x5C], ecx ; mov dword [eax+0x58], ecx ; ret  ;  (1 found)
+0x505181cb: push esp ; mov dword [edi+0x7C], eax ; call dword [eax+0x10] ;  (1 found)
+0x5052dcb8: push esp ; mov dword [esi+0x58], ebx ; mov dword [esi+0x5C], edi ; call dword [esi+0x48] ;  (1 found)
+0x505010f5: push esp ; mov eax, dword [0xFF835054] ; push dword [esp+edx+0x57] ; call dword [0x5054A158] ;  (1 found)
+0x50526713: push esp ; mov eax, dword [edi] ; push esi ; push edi ; call dword [eax+0x18] ;  (1 found)
+0x50520a65: push esp ; pop edi ; pop esi ; leave  ; ret  ;  (1 found)
 
 python analyze_rop.py rop.txt --categorize
 Gadgets Agrupados por Categorías:
@@ -67,23 +80,29 @@ Gadgets Agrupados por Categorías:
 
 === BANDERA DE DIRECCIÓN ===
 ==========================
-0x401e66: cld ; leave ; ret ; (1 found)
-0x40ab62: cld ; xor  [eax+eax-0x70], eax ; nop ; jmp  [0x004431F8] ; (1 found)
-0x401f72: cld ; xor al, byte [eax+eax-0x70] ; nop ; jmp  [0x004432F8] ; (1 found)
-0x401e65: pop ebp ; cld ; leave ; ret ; (1 found)
---------------------------------------------------------------------------------
+0x50508d1a: add al, 0x6A ; cld  ; push dword [eax] ; call dword [0x5054A284] ;  (1 found)
+0x50508e54: add al, 0x6A ; cld  ; push dword [eax] ; call dword [0x5054A284] ;  (1 found)
+0x5053261e: add al, byte [ebx-0x778DF707] ; std  ; rep movsd  ; cld  ; jmp dword [0x505326D0+edx*4] ;  (1 found)
+0x5053298e: add al, byte [ebx-0x778DF707] ; std  ; rep movsd  ; cld  ; jmp dword [0x50532A40+edx*4] ;  (1 found)
+0x5050f0e2: add byte [ebx+0x75FF0CC4], al ; cld  ; call dword [0x5054A0D8] ;  (1 found)
+0x50508607: add byte [ecx+0x75FFFC45], cl ; cld  ; call edi ;  (1 found)
+0x5052babd: add byte [esi-0x18], dl ; cld  ; push 0xC4830000 ; adc al, 0x5E ; ret  ;  (1 found)
+0x50508605: add dword [eax], eax ; add byte [ecx+0x75FFFC45], cl ; cld  ; call edi ;  (1 found)
 
 === CONTROL DE FLUJO ===
 ======================
-0x40ac86: aad 0x89 ; ret ; (1 found)
-0x401842: aam 0x17 ; retn 0x0040 ; (1 found)
-0x405833: aam 0x31 ; ror byte [ebp+0x5E5BF465], 0x5F ; pop ebp ; ret ; (1 found)
-0x405834: aam 0x31 ; ror byte [ebp+0x5E5BF465], 0x5F ; pop ebp ; ret ; (1 found)
-0x404216: aas ; add byte [eax], al ; add byte [ecx+0x5F5E5BF0], cl ; pop ebp ; ret ; (1 found)
-0x40a953: adc  [ebx+0x5E5B1CC4], eax ; pop edi ; pop ebp ; ret ; (1 found)
-0x40514d: adc al, 0x01 ; add byte [eax], al ; add esp, 0x0C ; ret ; (1 found)
-0x40a828: adc al, 0x5B ; pop esi ; pop edi ; pop ebp ; ret ; (1 found)
-0x40a89d: adc al, 0x5B ; pop esi ; pop edi ; pop ebp ; ret ; (1 found)
+0x505062c0: aaa  ; add byte [eax], al ; call dword [0x5054A188] ;  (1 found)
+0x505072fa: aaa  ; add byte [eax], al ; call dword [0x5055CA10] ;  (1 found)
+0x5050733a: aaa  ; add byte [eax], al ; call dword [0x5055CA10] ;  (1 found)
+0x5050735c: aaa  ; add byte [eax], al ; call dword [0x5055CA14] ;  (1 found)
+0x50507169: aaa  ; add byte [eax], al ; push ebx ; call dword [0x5054A098] ;  (1 found)
+0x505212fe: aaa  ; add byte [ecx+0x3707D6C6], al ; ret  ;  (1 found)
+0x5051ec12: aaa  ; add dword [eax], eax ; add esp, 0x0C ; pop ebp ; ret  ;  (1 found)
+0x505235f7: aaa  ; and eax, dword [eax] ; add byte [ecx+0x59], bl ; leave  ; ret  ;  (1 found)
+0x50547213: aaa  ; lea eax, dword [ebp-0x40] ; push eax ; call dword [0x5054A268] ;  (1 found)
+0x50525142: aaa  ; mov eax, edi ; pop edi ; ret  ;  (1 found)
+0x50520195: aaa  ; movsx eax, word [eax+0x02] ; pop esi ; ret  ;  (1 found)
+
 ```
 - Probar manualmente en WinDbg que DEP está habilitado
 ```
