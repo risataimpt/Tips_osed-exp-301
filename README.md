@@ -52,6 +52,14 @@ options:
   --max-instr MAX_INSTR
                         Número máximo de instrucciones por gadget.
 
+python analyze_rop.py rop.txt --recommend-push
+
+Gadgets Recomendados: Gadgets que comienzan con PUSH ESP.
+--------------------------------------------------------------------------------
+0x409e4d: push esp ; add esp, 0x18 ; pop ebx ; ret ; (1 found)
+0x402b7c: push esp ; and al, 0x0C ; xor eax, eax ; add esp, 0x1C ; ret ; (1 found)
+0x40aae2: push esp ; xor al, byte [eax+eax-0x70] ; nop ; jmp  [0x00443250] ; (1 found)
+--------------------------------------------------------------------------------
 
 python analyze_rop.py rop.txt --categorize
 Gadgets Agrupados por Categorías:
