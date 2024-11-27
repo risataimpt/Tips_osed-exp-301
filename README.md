@@ -143,8 +143,9 @@ def encodeShellcode(sh):
 	return encodedShell
 
 ```
-Referencias:
+
 ```
+Referencias:
 https://hacktips.it/tags/osed/
 https://github.com/nop-tech/OSED
 https://github.com/epi052/osed-scripts
